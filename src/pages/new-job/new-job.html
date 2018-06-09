@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      <ion-icon name="add-circle"></ion-icon> New Job
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page2">
+    <ion-list>
+
+        <ion-item>
+          <ion-label fixed>Title</ion-label>
+          <ion-input type="text" value=""></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Hourly Rate Accuracy</ion-label>
+          <ion-select [(ngModel)]="rateAccuracy">
+            <ion-option value="1">1 minute</ion-option>
+            <ion-option value="15">15 minutes</ion-option>
+            <ion-option value="30">30 minutes</ion-option>
+            <ion-option value="60">60 minutes</ion-option>
+          </ion-select>
+        </ion-item>
+      
+        <ion-item>
+            <span>Income</span>
+            <span item-end>0.00 <ion-icon name="logo-euro"></ion-icon></span>
+        </ion-item>
+
+        <ion-item>
+            <span>Time Spent</span>
+            <span item-end>00:00:00 <ion-icon name="timer"></ion-icon></span>
+        </ion-item>
+      
+    </ion-list>
+    <ion-grid>
+        <ion-row>
+          <ion-col>
+              <button id="newJob-button7" ion-button color="energized" block>
+                  Start
+                </button>
+          </ion-col>
+          <ion-col>
+            <button id="newJob-button8" ion-button color="assertive" block>
+              Stop
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+</ion-content>
