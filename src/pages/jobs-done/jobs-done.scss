@@ -1,3 +1,9 @@
 page-jobs-done {
+    ion-item-sliding {
+        margin-bottom: 5px;
 
+        .item-inner {
+            border-bottom: none !important;
+        }
+    }
 }
