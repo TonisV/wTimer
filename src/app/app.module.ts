@@ -4,37 +4,40 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { NewJobPage } from '../pages/new-job/new-job';
 import { JobsDonePage } from '../pages/jobs-done/jobs-done';
-import { SettingsPage } from '../pages/settings/settings';
 import { TabsControllerPage } from '../pages/tabs-controller/tabs-controller';
-
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { DataProvider } from '../providers/data/data';
+import { HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage';
+
 
 @NgModule({
   declarations: [
     MyApp,
     NewJobPage,
     JobsDonePage,
-    SettingsPage,
     TabsControllerPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    HttpClientModule,
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     NewJobPage,
     JobsDonePage,
-    SettingsPage,
     TabsControllerPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DataProvider
   ]
 })
 export class AppModule {}
