@@ -1,14 +1,22 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { DataProvider } from '../../providers/data/data';
 
 @Component({
   selector: 'page-jobs-done',
   templateUrl: 'jobs-done.html'
 })
 export class JobsDonePage {
-  // this tells the tabs component which Pages
-  // should be each tab's root Page
-  constructor(public navCtrl: NavController) {
+
+  constructor(public navCtrl: NavController, public dataProvider: DataProvider) {
+  }
+
+  ionViewDidLoad() {
+    this.dataProvider.loadJobs();
+  }
+
+  removeJob(job) {
+    this.dataProvider.removeJob(job);
   }
   
 }
