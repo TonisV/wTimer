@@ -5,45 +5,56 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding id="page2">
-    <ion-list>
+<ion-content padding id="new-job">
+    <ion-list *ngIf="job">
 
-        <ion-item>
-          <ion-label fixed>Title</ion-label>
-          <ion-input type="text" value=""></ion-input>
-        </ion-item>
+      <ion-item>
+        <ion-label fixed>Title</ion-label>
+        <ion-input [(ngModel)]="job.title" type="text"></ion-input>
+      </ion-item>
 
-        <ion-item>
-          <ion-label>Hourly Rate Accuracy</ion-label>
-          <ion-select [(ngModel)]="rateAccuracy">
-            <ion-option value="1">1 minute</ion-option>
-            <ion-option value="15">15 minutes</ion-option>
-            <ion-option value="30">30 minutes</ion-option>
-            <ion-option value="60">60 minutes</ion-option>
-          </ion-select>
-        </ion-item>
-      
-        <ion-item>
-            <span item-lable>Income</span>
-            <span item-end>0.00 €</span>
-        </ion-item>
+      <ion-item>
+        <ion-label>Hourly rate (€)</ion-label>
+        <ion-input [(ngModel)]="job.hourlyRate" type="number"></ion-input>
+      </ion-item>
 
-        <ion-item>
-            <span item-lable>Time Spent</span>
-            <span item-end>00:00:00</span>
-        </ion-item>
+      <ion-item>
+        <ion-label>Hourly Rate Accuracy</ion-label>
+        <ion-select [(ngModel)]="job.timeAccuracy">
+          <ion-option value="1">1 minute</ion-option>
+          <ion-option value="15">15 minutes</ion-option>
+          <ion-option value="30">30 minutes</ion-option>
+          <ion-option value="60">60 minutes</ion-option>
+        </ion-select>
+      </ion-item>
+    
+      <ion-item>
+        <span item-lable>Income</span>
+        <span item-end>{{job.income}} €</span>
+      </ion-item>
+
+      <ion-item>
+        <span item-lable>Time Spent</span>
+        <span item-end *ngIf="timer">{{job.time.timeString}}</span>
+      </ion-item>
       
     </ion-list>
-    <ion-grid>
+    <ion-grid *ngIf="timer">
         <ion-row>
           <ion-col>
-              <button id="newJob-button7" ion-button color="secondary" block>
-                  Start
-                </button>
+            <button ion-button color="secondary" block (click)="startTimer()" *ngIf="!timer.hasStarted">
+              Start
+            </button>
+            <button ion-button color="purple" block (click)="pauseTimer()" *ngIf="timer.runTimer && timer.hasStarted">
+              Pause
+            </button>
+            <button ion-button color="green" block (click)="startTimer()" *ngIf="!timer.runTimer && timer.hasStarted">
+              Resume
+            </button>
           </ion-col>
           <ion-col>
-            <button id="newJob-button8" ion-button color="danger" block>
-              Stop
+            <button id="stop" ion-button color="danger" block (click)="stop(job)">
+              Stop & save
             </button>
           </ion-col>
         </ion-row>
